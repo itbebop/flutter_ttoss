@@ -1,11 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'app.dart';
 import 'common/data/preference/app_preferences.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final bindings = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(
+      widgetsBinding:
+          bindings); // flutterNativeSplash에서 기존 화면을 유지해줌, s_main에서 삭제도 해줌
+  // web에서는 이 방법으로는 안뜨나?
   await EasyLocalization.ensureInitialized();
   await AppPreferences.init();
 
