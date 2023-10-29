@@ -1,14 +1,11 @@
 import 'package:fast_app_base/screen/main/tab/home/banks_dummy.dart';
 import 'package:fast_app_base/screen/main/tab/home/vo/vo_bank_account.dart';
 
-final bankAccountShinhan1 =
-    BankAccount(bankShinhan, 3000000, accountTypeName: "신한 주거래 우대통장(저축예금)");
-final bankAccountShinhan2 =
-    BankAccount(bankShinhan, 30000000, accountTypeName: "저축예금");
+final bankAccountShinhan1 = BankAccount(bankShinhan, 3000000, accountTypeName: "신한 주거래 우대통장(저축예금)");
+final bankAccountShinhan2 = BankAccount(bankShinhan, 30000000, accountTypeName: "저축예금");
 final bankAccountShinhan3 = BankAccount(bankShinhan, 300000000);
 final bankAccountToss = BankAccount(bankTtoss, 50000000);
-final bankAccountKakao =
-    BankAccount(bankKaKao, 70000000, accountTypeName: "입출금통장");
+final bankAccountKakao = BankAccount(bankKaKao, 70000000, accountTypeName: "입출금통장");
 /*
 main() {
   // list 출력
@@ -43,13 +40,7 @@ main() {
 }
 */
 // List
-final List<BankAccount> bankAccounts = [
-  bankAccountShinhan1,
-  bankAccountShinhan2,
-  bankAccountShinhan3,
-  bankAccountToss,
-  bankAccountKakao
-];
+final List<BankAccount> bankAccounts = [bankAccountShinhan1, bankAccountShinhan2, bankAccountShinhan3, bankAccountToss, bankAccountKakao];
 
 // Map
 final bankMap = {
@@ -58,10 +49,4 @@ final bankMap = {
 };
 // Set
 // data를 가져오는 것이 아니라 data가 존재하는지 확인 용도로 많이 사용한다.
-final bankSet = {
-  bankAccountShinhan1,
-  bankAccountShinhan2,
-  bankAccountShinhan3,
-  bankAccountToss,
-  bankAccountKakao
-};
+final bankSet = {bankAccountShinhan1, bankAccountShinhan2, bankAccountShinhan3, bankAccountToss, bankAccountKakao};

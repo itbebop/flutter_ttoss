@@ -7,17 +7,10 @@ import 'common/data/preference/app_preferences.dart';
 
 void main() async {
   final bindings = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(
-      widgetsBinding:
-          bindings); // flutterNativeSplash에서 기존 화면을 유지해줌, s_main에서 삭제도 해줌
-  // web에서는 이 방법으로는 안뜨나?
+  FlutterNativeSplash.preserve(widgetsBinding: bindings); // flutterNativeSplash에서 기존 화면을 유지해줌, s_main에서 삭제도 해줌
+
   await EasyLocalization.ensureInitialized();
   await AppPreferences.init();
 
-  runApp(EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ko')],
-      fallbackLocale: const Locale('en'),
-      path: 'assets/translations',
-      useOnlyLangCode: true,
-      child: const App()));
+  runApp(EasyLocalization(supportedLocales: const [Locale('en'), Locale('ko')], fallbackLocale: const Locale('en'), path: 'assets/translations', useOnlyLangCode: true, child: const App()));
 }
