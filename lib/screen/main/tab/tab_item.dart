@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 enum TabItem {
   home(Icons.home, '홈', HomeFragment()),
-  benefit(Icons.star, '혜택', Benefit()),
+  benefit(Icons.star, '혜택', BenefitFragment()),
   ttosspay(Icons.payment, '토스페이', Ttosspay()),
   stock(Icons.candlestick_chart, '주식', Stock()),
   all(Icons.menu, '전체', All());
@@ -21,19 +21,14 @@ enum TabItem {
   final Widget firstPage;
 
   //const TabItem(this.activeImagePath...
-  const TabItem(this.activeIcon, this.tabName, this.firstPage,
-      {IconData? inActiveIcon})
-      : inActiveIcon = inActiveIcon ?? activeIcon;
+  const TabItem(this.activeIcon, this.tabName, this.firstPage, {IconData? inActiveIcon}) : inActiveIcon = inActiveIcon ?? activeIcon;
 
-  BottomNavigationBarItem toNavigationBarItem(BuildContext context,
-      {required bool isActivated}) {
+  BottomNavigationBarItem toNavigationBarItem(BuildContext context, {required bool isActivated}) {
     return BottomNavigationBarItem(
         icon: Icon(
           key: ValueKey(tabName),
           isActivated ? activeIcon : inActiveIcon,
-          color: isActivated
-              ? context.appColors.iconButton
-              : context.appColors.iconButtonInactivate,
+          color: isActivated ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
         ),
         label: tabName);
   }

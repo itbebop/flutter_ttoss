@@ -54,5 +54,5 @@ abstract class AbstractThemeColors {
 
   Color get unreadColor => const Color.fromARGB(255, 80, 80, 80);
 
-  Color get lessImportantText => AppColors.grey;
+  Color get lessImportant => AppColors.grey;
 }
