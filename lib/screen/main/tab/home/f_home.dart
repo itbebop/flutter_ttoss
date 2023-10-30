@@ -1,11 +1,11 @@
+import 'package:fast_app_base/common/cli_common.dart';
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/widget/round_button_theme.dart';
 import 'package:fast_app_base/common/widget/w_big_button.dart';
-import 'package:fast_app_base/common/widget/w_round_button.dart';
 import 'package:fast_app_base/common/widget/w_rounded_container.dart';
 import 'package:fast_app_base/screen/dialog/d_message.dart';
+import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:fast_app_base/screen/main/tab/home/bank_accounts_dummy.dart';
-import 'package:fast_app_base/screen/main/tab/home/vo/vo_bank_account.dart';
 import 'package:fast_app_base/screen/main/tab/home/w_bank_account.dart';
 import 'package:fast_app_base/screen/main/tab/home/w_ttos_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -25,28 +25,38 @@ class HomeFragment extends StatelessWidget {
       child: Container(
         child: Stack(
           children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 60),
-              child: Column(
-                children: [
-                  BigButton(
-                    "토스뱅크",
-                    onTap: () {
-                      context.showSnackbar("토스뱅크를 눌렀어요.");
-                    },
-                  ),
-                  height10,
-                  RoundedContainer(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      "자산".text.bold.white.make(),
-                      height5,
-                      ...bankAccounts.map((e) => BankAccountWidget(e)).toList(),
-                    ],
-                  ))
-                ],
-              ).pSymmetric(h: 20),
+            RefreshIndicator(
+              edgeOffset: TtossAppBar.appBarHeight, // 새로고침 표시 위치
+              onRefresh: () async {
+                await sleepAsync(500.ms);
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.only(
+                    top: TtossAppBar.appBarHeight,
+                    bottom: MainScreenState.bottomNavigatorHeight),
+                child: Column(
+                  children: [
+                    BigButton(
+                      "토스뱅크",
+                      onTap: () {
+                        context.showSnackbar("토스뱅크를 눌렀어요.");
+                      },
+                    ),
+                    height10,
+                    RoundedContainer(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        "자산".text.bold.white.make(),
+                        height5,
+                        ...bankAccounts
+                            .map((e) => BankAccountWidget(e))
+                            .toList(),
+                      ],
+                    ))
+                  ],
+                ).pSymmetric(h: 20),
+              ),
             ),
             const TtossAppBar(),
           ],
@@ -61,7 +71,13 @@ class HomeFragment extends StatelessWidget {
           onTap: () {
             context.showErrorSnackbar('error');
           },
-          child: '에러 보여주기 버튼'.text.white.size(13).make().centered().pSymmetric(h: 10, v: 5),
+          child: '에러 보여주기 버튼'
+              .text
+              .white
+              .size(13)
+              .make()
+              .centered()
+              .pSymmetric(h: 10, v: 5),
         ));
   }
 

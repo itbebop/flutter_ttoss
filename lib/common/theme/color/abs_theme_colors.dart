@@ -51,4 +51,8 @@ abstract class AbstractThemeColors {
   Color get buttonBackground => const Color.fromARGB(255, 48, 48, 48);
 
   Color get roundedBackground => const Color.fromARGB(255, 24, 24, 24);
+
+  Color get unreadColor => const Color.fromARGB(255, 80, 80, 80);
+
+  Color get lessImportantText => AppColors.grey;
 }
