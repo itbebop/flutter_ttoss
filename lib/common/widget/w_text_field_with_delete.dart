@@ -131,18 +131,14 @@ class TextFieldWithDeleteState extends State<TextFieldWithDelete> {
               onEditingComplete: widget.onEditingComplete,
               style: TextStyle(fontSize: widget.fontSize, fontWeight: widget.fontWeight),
               decoration: InputDecoration(
-                contentPadding:
-                    EdgeInsets.only(left: widget.leftImage == null ? 0 : 30, top: 10, bottom: 14),
+                contentPadding: EdgeInsets.only(left: widget.leftImage == null ? 0 : 30, top: 10, bottom: 14),
                 hintText: widget.texthint,
-                hintStyle: TextStyle(
-                    fontSize: widget.fontSize,
-                    fontWeight: widget.fontWeight,
-                    color: context.appColors.hintText),
+                hintStyle: TextStyle(fontSize: widget.fontSize, fontWeight: widget.fontWeight, color: context.appColors.hintText),
                 enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                 ),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: context.appColors.focusedBorder, width: 8),
+                  borderSide: BorderSide(color: context.appColors.focusedBorder, width: 2),
                 ),
               ),
             ),
@@ -162,8 +158,7 @@ class TextFieldWithDeleteState extends State<TextFieldWithDelete> {
                                 padding: EdgeInsets.only(right: widget.deleteRightPadding),
                                 child: SvgPicture.asset(
                                   '$basePath/icon/delete_x.svg',
-                                  colorFilter: ui.ColorFilter.mode(
-                                      context.appColors.iconButton, ui.BlendMode.srcIn),
+                                  colorFilter: ui.ColorFilter.mode(context.appColors.iconButton, ui.BlendMode.srcIn),
                                 ),
                               ),
                             ),

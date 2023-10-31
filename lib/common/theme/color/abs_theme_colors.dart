@@ -32,7 +32,7 @@ abstract class AbstractThemeColors {
 
   Color get text => Colors.white;
 
-  Color get hintText => AppColors.middleGrey;
+  Color get hintText => AppColors.grey;
 
   Color get focusedBorder => AppColors.darkGrey;
 
