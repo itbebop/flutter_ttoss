@@ -40,7 +40,7 @@ ThemeData lightTheme = ThemeData(
     //colorScheme: ColorScheme.fromSeed(seedColor: CustomTheme.light.appColors.seedColor));
     colorScheme: const ColorScheme.light(background: Colors.white));
 
-const darkColorSeed = Color(0xbcd5ff7e);
+//const darkColorSeed = Color(0xbcd5ff7e);
 ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
