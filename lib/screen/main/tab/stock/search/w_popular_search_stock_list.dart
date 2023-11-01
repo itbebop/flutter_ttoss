@@ -1,7 +1,10 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/dart/extension/datetime_extension.dart';
+import 'package:fast_app_base/screen/main/tab/stock/search/popular_stock_dummy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'w_popular_stock_item.dart';
 
 class PopularSearchStockList extends StatelessWidget {
   const PopularSearchStockList({super.key});
@@ -16,9 +19,10 @@ class PopularSearchStockList extends StatelessWidget {
             emptyExpanded,
             "오늘 ${DateTime.now().formattedDate} 기준".text.size(12).make(),
           ],
-        ).pSymmetric(h: 20),
+        ),
         height20,
+        ...popularStocks.mapIndexed((element, index) => PopularStockItem(stock: element, number: index + 1)).toList(),
       ],
-    );
+    ).pSymmetric(h: 20);
   }
 }
