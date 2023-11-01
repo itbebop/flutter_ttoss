@@ -110,6 +110,7 @@ class MainScreenState extends State<MainScreen>
           topRight: Radius.circular(bottomNavigationBarBorderRadius),
         ),
         child: BottomNavigationBar(
+          backgroundColor: context.appColors.appBarBackground,
           items: navigationBarItems(context),
           currentIndex: _currentIndex,
           selectedItemColor: context.appColors.text,

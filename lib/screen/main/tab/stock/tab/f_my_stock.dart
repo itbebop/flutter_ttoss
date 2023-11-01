@@ -1,10 +1,7 @@
 import 'package:fast_app_base/common/common.dart';
-import 'package:fast_app_base/common/dart/extension/context_extension.dart';
 import 'package:fast_app_base/common/widget/w_arrow.dart';
-import 'package:fast_app_base/common/widget/w_height_and_width.dart';
 import 'package:fast_app_base/common/widget/w_long_button.dart';
 import 'package:fast_app_base/common/widget/w_rounded_container.dart';
-import 'package:fast_app_base/screen/main/tab/stock/tab/dummy_interest_stocks.dart';
 import 'package:fast_app_base/screen/main/tab/stock/tab/w_interest_stock_list.dart';
 import 'package:flutter/material.dart';
 
@@ -13,30 +10,39 @@ class MyStockFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        getMyAccount(context),
-        height20,
-        getMyStock(context),
-      ],
+    return Container(
+      color: context.appColors.appBarBackground,
+      child: Column(
+        children: [
+          getMyAccount(context),
+          height20,
+          getMyStock(context),
+        ],
+      ),
     );
   }
 
   Widget getMyAccount(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        color: context.appColors.roundedLayoutBackground,
+        //color: context.appColors.roundedLayoutBackground,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             height20,
-            '계좌'.text.make(),
+            '계좌'.text.color(context.appColors.iconButton).make(),
             Row(
               children: [
-                '443원'.text.size(24).bold.make(),
+                '443원'
+                    .text
+                    .color(context.appColors.iconButton)
+                    .size(24)
+                    .bold
+                    .make(),
                 const Arrow(),
                 emptyExpanded,
                 RoundedContainer(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   radius: 8,
                   backgroundColor: context.appColors.buttonBackground,
                   child: '채우기'.text.size(12).make(),
@@ -62,7 +68,7 @@ class MyStockFragment extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    '관심주식'.text.bold.make(),
+                    '관심주식'.text.bold.color(context.appColors.iconButton).make(),
                     //emptyExpanded, // 이렇게 하거나 spaceBetween
                     '편집하기'.text.color(context.appColors.lessImportant).make(),
                   ],
@@ -77,9 +83,14 @@ class MyStockFragment extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        '기본'.text.bold.make(),
-                        const Arrow(
+                        '기본'
+                            .text
+                            .color(context.appColors.iconButton)
+                            .bold
+                            .make(),
+                        Arrow(
                           direction: AxisDirection.up,
+                          color: context.appColors.lessImportant,
                         )
                       ],
                     ),
@@ -88,7 +99,8 @@ class MyStockFragment extends StatelessWidget {
               ],
             ),
           ),
-          const InterestStockList().pSymmetric(h: 20), // container와 분리하여 넣음(padding 때문에)
+          const InterestStockList()
+              .pSymmetric(h: 20), // container와 분리하여 넣음(padding 때문에)
         ],
       );
 }

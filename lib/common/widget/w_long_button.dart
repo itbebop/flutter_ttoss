@@ -14,7 +14,7 @@ class LongButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Row(
         children: [
-          title.text.make(),
+          title.text.color(context.appColors.iconButton).make(),
           emptyExpanded,
           Arrow(color: context.appColors.lessImportant),
         ],
