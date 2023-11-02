@@ -1,7 +1,10 @@
 import 'package:fast_app_base/screen/main/tab/stock/search/search_stock_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+import '../../../../../common/widget/w_tap.dart';
+import 'search_auto_complete_list.dart';
 import 'w_popular_search_stock_list.dart';
 import 'w_search_history_stock_list.dart';
 import 'w_stock_search_app_bar.dart';
@@ -13,11 +16,13 @@ class SearchStockScreen extends StatefulWidget {
   State<SearchStockScreen> createState() => _SearchStockScreenState();
 }
 
-class _SearchStockScreenState extends State<SearchStockScreen> {
-  final controller = TextEditingController(); // 변수타입 TextFieldWithDelete는 생성자와 중복되므로 생략해도 됨
-  // 예외 발생 Get.find->Get.put으로 변경
-  late final searchData = Get.find<SearchStockData>();
-  //late final searchData = Get.put(SearchStockData());
+class _SearchStockScreenState extends State<SearchStockScreen>
+    with SearchStockDataProvider {
+  final controller =
+      TextEditingController(); // 변수타입 TextFieldWithDelete는 생성자와 중복되므로 생략해도 됨
+  // mixin 사용으로 삭제
+  //late final searchData = Get.find<SearchStockData>();
+
   @override
   void initState() {
     // 실무상 controller.data에 좀더 쉽게 접근하기 위한 팁
@@ -27,7 +32,9 @@ class _SearchStockScreenState extends State<SearchStockScreen> {
     // 리스너, 검색창에 입력된 값 받음(컨트롤러에 입력값 있을때마다 수행)
     controller.addListener(() {
       //debugPrint(controller.text);
+      debugPrint(controller.text);
       searchData.search(controller.text);
+      //setState(() {});
     });
 
     /*
@@ -54,11 +61,15 @@ class _SearchStockScreenState extends State<SearchStockScreen> {
       appBar: StockSearchAppBar(
         controller: controller,
       ),
-      body: ListView(
-        children: const [
-          SearchHistoryStockList(),
-          PopularSearchStockList(),
-        ],
+      body: Obx(
+        () => searchData.autoCompleteList.isEmpty
+            ? ListView(
+                children: const [
+                  SearchHistoryStockList(),
+                  PopularSearchStockList(),
+                ],
+              )
+            : SearchAutoCompleteList(controller),
       ),
     );
   }

@@ -14,7 +14,7 @@ class StockItem extends StatelessWidget {
       child: Row(children: [
         Image.asset(stock.stockImagePath, width: 50),
         width20,
-        (stock.stockName)
+        (stock.name)
             .text
             .color(context.appColors.iconButton)
             .size(18)

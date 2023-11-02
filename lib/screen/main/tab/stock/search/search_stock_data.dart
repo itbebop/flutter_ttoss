@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 import '../../../../../common/util/local_json.dart';
 import '../vo/vo_simple_stock.dart';
 
+abstract mixin class SearchStockDataProvider {
+  late final searchData = Get.find<SearchStockData>();
+}
+
 class SearchStockData extends GetxController {
   List<SimpleStock> stocks = [];
   // 검색할 때 가로로 나오는 리스트
@@ -20,13 +24,25 @@ class SearchStockData extends GetxController {
   }
 
   Future<void> loadLocalStockJson() async {
-    final jsonList = await LocalJson.getObjectList<SimpleStock>("json/stock_list.json");
+    final jsonList =
+        await LocalJson.getObjectList<SimpleStock>("json/stock_list.json");
     stocks.addAll(jsonList);
   }
 
   void search(String keyword) {
-    autoCompleteList.value = stocks.where((element) => element.stockName.contains(keyword)).toList();
+    if (keyword.isEmpty) {
+      debugPrint("검색어 없음");
+      autoCompleteList.clear();
+      //searchHistoryList.clear();
+      return;
+    }
+    autoCompleteList.value =
+        stocks.where((element) => element.name.contains(keyword)).toList();
 
     //debugPrint(autoCompleteList.toString()); // material import
+  }
+
+  void addSearchHistory(SimpleStock stock) {
+    searchHistoryList.add(stock.name);
   }
 }
