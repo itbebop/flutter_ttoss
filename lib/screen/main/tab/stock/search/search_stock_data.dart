@@ -24,8 +24,7 @@ class SearchStockData extends GetxController {
   }
 
   Future<void> loadLocalStockJson() async {
-    final jsonList =
-        await LocalJson.getObjectList<SimpleStock>("json/stock_list.json");
+    final jsonList = await LocalJson.getObjectList<SimpleStock>("json/stock_list.json");
     stocks.addAll(jsonList);
   }
 
@@ -36,13 +35,16 @@ class SearchStockData extends GetxController {
       //searchHistoryList.clear();
       return;
     }
-    autoCompleteList.value =
-        stocks.where((element) => element.name.contains(keyword)).toList();
+    autoCompleteList.value = stocks.where((element) => element.name.contains(keyword)).toList();
 
     //debugPrint(autoCompleteList.toString()); // material import
   }
 
   void addSearchHistory(SimpleStock stock) {
     searchHistoryList.add(stock.name);
+  }
+
+  void removeHistory(String stockName) {
+    searchHistoryList.remove(stockName);
   }
 }
