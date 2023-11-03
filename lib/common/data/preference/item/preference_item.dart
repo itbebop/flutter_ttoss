@@ -1,3 +1,5 @@
+import 'package:flutter/src/material/theme_data.dart';
+
 import '../app_preferences.dart';
 
 class PreferenceItem<T> {
