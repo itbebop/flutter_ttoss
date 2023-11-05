@@ -1,10 +1,9 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:fast_app_base/common/cli_common.dart';
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
 import 'package:fast_app_base/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../common/common.dart';
 import 'w_menu_drawer.dart';
 
@@ -15,8 +14,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin, AfterLayoutMixin {
+class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin, AfterLayoutMixin {
   TabItem _currentTab = TabItem.home;
   final tabs = [
     TabItem.home,
@@ -29,8 +27,7 @@ class MainScreenState extends State<MainScreen>
 
   int get _currentIndex => tabs.indexOf(_currentTab);
 
-  GlobalKey<NavigatorState> get _currentTabNavigationKey =>
-      navigatorKeys[_currentIndex];
+  GlobalKey<NavigatorState> get _currentTabNavigationKey => navigatorKeys[_currentIndex];
 
   bool get extendBody => true;
 
@@ -60,8 +57,7 @@ class MainScreenState extends State<MainScreen>
         drawer: const MenuDrawer(),
         body: Container(
           //color: context.appColors.seedColor.getMaterialColorValues[200],
-          padding: EdgeInsets.only(
-              bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+          padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
           child: SafeArea(
             bottom: !extendBody,
             child: pages,
@@ -85,8 +81,7 @@ class MainScreenState extends State<MainScreen>
           .toList());
 
   Future<bool> _handleBackPressed() async {
-    final isFirstRouteInCurrentTab =
-        (await _currentTabNavigationKey.currentState?.maybePop() == false);
+    final isFirstRouteInCurrentTab = (await _currentTabNavigationKey.currentState?.maybePop() == false);
     if (isFirstRouteInCurrentTab) {
       if (_currentTab != TabItem.home) {
         _changeTab(tabs.indexOf(TabItem.home));
@@ -141,15 +136,12 @@ class MainScreenState extends State<MainScreen>
     });
   }
 
-  BottomNavigationBarItem bottomItem(bool activate, IconData iconData,
-      IconData inActivateIconData, String label) {
+  BottomNavigationBarItem bottomItem(bool activate, IconData iconData, IconData inActivateIconData, String label) {
     return BottomNavigationBarItem(
         icon: Icon(
           key: ValueKey(label),
           activate ? iconData : inActivateIconData,
-          color: activate
-              ? context.appColors.iconButton
-              : context.appColors.iconButtonInactivate,
+          color: activate ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
         ),
         label: label);
   }

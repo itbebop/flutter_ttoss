@@ -1,6 +1,7 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/screen/notification/s_notification.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class TtossAppBar extends StatefulWidget {
   static const double appBarHeight = 60;
@@ -11,7 +12,7 @@ class TtossAppBar extends StatefulWidget {
 }
 
 class _TtossAppBarState extends State<TtossAppBar> {
-  bool _showRedDot = false;
+  final bool _showRedDot = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +50,20 @@ class _TtossAppBarState extends State<TtossAppBar> {
                   child: Container(
                     width: 6,
                     height: 6,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.red),
+                    decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
                   ),
                 ))
             ],
-          ),
+          )
+              .animate(
+                onComplete: (controller) => controller.repeat(),
+              )
+              .shake(
+                duration: 2100.ms,
+                hz: 4, // 1초에 3번 흔들도록
+              )
+              .then()
+              .fadeOut(duration: 1000.ms), // 흔들린 후 사라지도록
         ),
       ]),
     );

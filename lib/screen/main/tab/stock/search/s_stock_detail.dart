@@ -1,3 +1,4 @@
+import 'package:fast_app_base/common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -9,7 +10,7 @@ class StockDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: name.text.size(20).color(context.appColors.textBadgeText).bold.make(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

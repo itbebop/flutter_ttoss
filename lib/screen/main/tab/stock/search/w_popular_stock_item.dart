@@ -6,8 +6,7 @@ import '../vo/vo_popular_stock.dart';
 class PopularStockItem extends StatelessWidget {
   final PopularStock stock;
   final int number;
-  const PopularStockItem(
-      {super.key, required this.stock, required this.number});
+  const PopularStockItem({super.key, required this.stock, required this.number});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +14,12 @@ class PopularStockItem extends StatelessWidget {
       children: [
         SizedBox(
           width: 40,
-          child: number.text.make(),
+          child: number.text.size(20).color(context.appColors.textBadgeText).bold.make(),
         ),
-        width30,
-        stock.name.text.make(),
+        width10,
+        stock.name.text.size(20).color(context.appColors.textBadgeText).bold.make(),
         emptyExpanded,
-        stock.todayPercentageString.text
-            .color(stock.getTodayPercentageColor(context))
-            .make(),
+        stock.todayPercentageString.text.color(stock.getTodayPercentageColor(context)).make(),
       ],
     ).pSymmetric(v: 25);
   }
