@@ -13,7 +13,7 @@ class TtossAppBar extends StatefulWidget {
 
 class _TtossAppBarState extends State<TtossAppBar> {
   final bool _showRedDot = false;
-
+  int _tappingCount = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,14 +22,26 @@ class _TtossAppBarState extends State<TtossAppBar> {
       color: context.appColors.appBarBackground,
       child: Row(children: [
         width10,
-        Image.asset(
-          "$basePath/icon/toss.png",
-          height: 30,
+        AnimatedContainer(
+          duration: 1000.ms,
+          curve: Curves.easeIn,
+          height: _tappingCount > 2 ? 60 : 30,
+          child: Image.asset(
+            "$basePath/icon/toss.png",
+            //height: 30, // 이미지 위젯은 container로 감싸져있으면 내부 속성은 먹지않아서 지움
+          ),
         ),
         emptyExpanded,
-        Image.asset(
-          "$basePath/icon/map_point.png",
-          height: 30,
+        Tap(
+          onTap: () {
+            setState(() {
+              _tappingCount++;
+            });
+          },
+          child: Image.asset(
+            "$basePath/icon/map_point.png",
+            height: 30,
+          ),
         ),
         width10,
         Tap(
@@ -55,6 +67,7 @@ class _TtossAppBarState extends State<TtossAppBar> {
                 ))
             ],
           )
+              // 애니메이션
               .animate(
                 onComplete: (controller) => controller.repeat(),
               )

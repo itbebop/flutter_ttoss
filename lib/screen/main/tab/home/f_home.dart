@@ -25,9 +25,10 @@ class HomeFragment extends StatelessWidget {
       color: Colors.black,
       child: Stack(
         children: [
+          // 라이브 백그라운드
           const LiveBackgroundWidget(
-            palette: Palette(colors: [Colors.red, Colors.green]),
-            velocityX: 4, // 속도
+            palette: Palette(colors: [Colors.blue, Colors.green]),
+            velocityX: 10, // 속도
             particleMaxSize: 40,
           ),
           RefreshIndicator(
@@ -62,6 +63,7 @@ class HomeFragment extends StatelessWidget {
         ],
       ),
     )
+        // 목록 내려오는 애니메이션
         .animate()
         .slideY(
           //  delay: 500.ms, // 기다렸다가 수행
