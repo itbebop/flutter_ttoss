@@ -33,96 +33,103 @@ class _SettingScreenState extends State<SettingScreen> {
       //appBar: AppBar(title: "설정".text.make()),
       body: Stack(
         children: [
-          ListView(
-            controller: scrollController,
-            padding: const EdgeInsets.only(top: 150),
-            children: [
-              // switch 버튼
-              Obx(
-                () => SwitchMenu(
-                  "푸시 설정",
-                  //isPushOn,
-                  Prefs.isPushOnRx.get(),
-                  onTap: (isOn) {
-                    //Prefs.isPushOn.set(isOn);
-                    Prefs.isPushOnRx.set(isOn);
-                  },
+          Container(
+            color: context.appColors.appBarBackground,
+            child: ListView(
+              controller: scrollController,
+              padding: const EdgeInsets.only(top: 150, left: 20),
+              children: [
+                // switch 버튼
+                Obx(
+                  () => SwitchMenu(
+                    "푸시 설정",
+                    //isPushOn,
+                    Prefs.isPushOnRx.get(),
+                    onTap: (isOn) {
+                      //Prefs.isPushOn.set(isOn);
+                      Prefs.isPushOnRx.set(isOn);
+                    },
+                  ),
                 ),
-              ),
-              // slider 시작
-              Obx(
-                () => Slider(
-                  value: Prefs.sliderPosition.get(),
-                  onChanged: (value) {
-                    //Prefs.sliderPosition.set(value);
-                    Prefs.sliderPosition(value); // 위와 동일한 방법임
-                  },
+                // slider 시작
+                Obx(
+                  () => Slider(
+                    value: Prefs.sliderPosition.get(),
+                    onChanged: (value) {
+                      //Prefs.sliderPosition.set(value);
+                      Prefs.sliderPosition(value); // 위와 동일한 방법임
+                    },
+                  ),
                 ),
-              ),
-              //date, time
-              Obx(
-                () => BigButton(
-                  '날짜 ${Prefs.birthday.get() == null ? "" : Prefs.birthday.get()?.formattedDate}',
-                  onTap: () async {
-                    final date = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now().subtract(90.days), lastDate: DateTime.now().add(90.days));
-                    if (date != null) {
-                      Prefs.birthday.set(date);
-                    }
-                  },
+                //date, time
+                Obx(
+                  () => BigButton(
+                    '날짜 ${Prefs.birthday.get() == null ? "" : Prefs.birthday.get()?.formattedDate}',
+                    onTap: () async {
+                      final date = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now().subtract(90.days),
+                          lastDate: DateTime.now().add(90.days));
+                      if (date != null) {
+                        Prefs.birthday.set(date);
+                      }
+                    },
+                  ),
                 ),
-              ),
-              //number dialog
-              Obx(
-                () => BigButton(
-                  '저장된 숫자 ${Prefs.number.get()}',
-                  onTap: () async {
-                    final number = await NumberDialog().show();
-                    if (number != null) {
-                      Prefs.number.set(number);
-                    }
-                  },
+                //number dialog
+                Obx(
+                  () => BigButton(
+                    '저장된 숫자 ${Prefs.number.get()}',
+                    onTap: () async {
+                      final number = await NumberDialog().show();
+                      if (number != null) {
+                        Prefs.number.set(number);
+                      }
+                    },
+                  ),
                 ),
-              ),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-              BigButton("오픈소스 화면", onTap: () {
-                Nav.push(const OpensourceScreen());
-              }),
-            ],
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+                BigButton("오픈소스 화면", onTap: () {
+                  Nav.push(const OpensourceScreen());
+                }),
+              ],
+            ),
           ),
           AnimatedAppBar('설정', controller: scrollController)
         ],

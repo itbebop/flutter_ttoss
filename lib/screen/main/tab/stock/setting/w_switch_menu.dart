@@ -16,7 +16,7 @@ class SwitchMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        title.text.make(),
+        title.text.color(context.appColors.textBadgeText).size(20).bold.make(),
         emptyExpanded,
         OsSwitch(value: isOn, onChanged: onTap), // Os에 따라서 다른 디자인 적용
         //CupertinoSwitch(value: isOn, onChanged: onTap), //ios 디자인 스위치

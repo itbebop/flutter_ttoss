@@ -6,7 +6,10 @@ import 'package:nav/dialog/dialog.dart';
 import 'package:nav/enum/enum_nav_ani.dart';
 
 class NumberDialog extends DialogWidget<int> {
-  NumberDialog({super.key, super.animation = NavAni.Fade, super.barrierDismissible = false});
+  NumberDialog(
+      {super.key,
+      super.animation = NavAni.Fade,
+      super.barrierDismissible = false});
 
   @override
   DialogState<NumberDialog> createState() => _NumberDialogState();
@@ -25,12 +28,28 @@ class _NumberDialogState extends DialogState<NumberDialog> {
           RoundedContainer(
               child: Column(
             children: [
-              '숫자를 입력해주세요'.text.make(),
+              '숫자를 입력해주세요'.text.color(context.appColors.lessImportant).make(),
               TextField(
+                decoration: InputDecoration(
+                  // enabledBorder: OutlineInputBorder(
+                  //   borderSide:
+                  //       BorderSide(color: context.appColors.textBadgeText),
+                  // ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: context.appColors.textBadgeText),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: context.appColors.textBadgeText),
+                  ),
+                ),
+                cursorColor: context.appColors.textBadgeText,
+                style: TextStyle(color: context.appColors.textBadgeText),
                 controller: controller,
                 keyboardType: TextInputType.number,
               ),
-              height20,
+              //height20,
               RoundButton(
                 height: 30,
                 width: 30,
@@ -38,7 +57,8 @@ class _NumberDialogState extends DialogState<NumberDialog> {
                 onTap: () {
                   final text = controller.text;
                   int number = int.parse(text); // String타입 객체를 int로 변환
-                  widget.hide(number); // 여기서(Number..State) widget은 부모(NumberDialog)
+                  widget.hide(
+                      number); // 여기서(Number..State) widget은 부모(NumberDialog)
                   // hide()면 null을 넘기는 것
                 },
               )

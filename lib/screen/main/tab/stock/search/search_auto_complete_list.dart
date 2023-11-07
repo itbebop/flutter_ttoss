@@ -14,28 +14,34 @@ class SearchAutoCompleteList extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: searchData.autoCompleteList.length,
-      /*
-      itemBuilder: ((context, index) =>
-            searchData.autoCompleteList[index].stockName.text.make()));
-      */
-      itemBuilder: (BuildContext context, int index) {
-        final stock = searchData.autoCompleteList[index];
-        final stockName = stock.name;
-        return Tap(
-          onTap: () {
-            // 각 아이템(주식)을 클릭했을 때 주식의 상세페이지로 이동한다
-            Nav.push(StockDetailScreen(name: stockName));
-            searchData.addSearchHistory(stock);
-            _controller.clear();
-          },
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: stockName.text.make(),
-          ),
-        );
-      },
+    return Container(
+      color: context.appColors.appBarBackground,
+      child: ListView.builder(
+        itemCount: searchData.autoCompleteList.length,
+        /*
+        itemBuilder: ((context, index) =>
+              searchData.autoCompleteList[index].stockName.text.make()));
+        */
+        itemBuilder: (BuildContext context, int index) {
+          final stock = searchData.autoCompleteList[index];
+          final stockName = stock.name;
+          return Tap(
+            onTap: () {
+              // 각 아이템(주식)을 클릭했을 때 주식의 상세페이지로 이동한다
+              Nav.push(StockDetailScreen(name: stockName));
+              searchData.addSearchHistory(stock);
+              _controller.clear();
+            },
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: stockName.text
+                  .color(context.appColors.textBadgeText)
+                  .bold
+                  .make(),
+            ),
+          );
+        },
+      ),
     );
   }
 }

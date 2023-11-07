@@ -47,7 +47,7 @@ class _AnimatedAppBarState extends State<AnimatedAppBar> {
     //duration = 250.ms;
     return Container(
       width: double.infinity,
-      color: context.backgroundColor,
+      color: context.appColors.appBarBackground,
       child: SafeArea(
         child: Stack(
           children: [
@@ -55,15 +55,21 @@ class _AnimatedAppBarState extends State<AnimatedAppBar> {
               onTap: () {
                 Nav.pop(context); // package Nav import?
               },
-              child: const Arrow(),
+              child: Arrow(color: context.appColors.lessImportant),
             ).p20(),
             AnimatedContainer(
               duration: duration,
-              padding: EdgeInsets.only(left: getValue(20, 50), top: getValue(50, 15)),
+              padding: EdgeInsets.only(
+                  left: getValue(20, 50), top: getValue(50, 15)),
               child: AnimatedDefaultTextStyle(
-                style: TextStyle(fontSize: isNotTriggerd ? 30 : 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: isNotTriggerd ? 30 : 18,
+                    fontWeight: FontWeight.bold),
                 duration: duration,
-                child: widget.title.text.make(),
+                child: widget.title.text
+                    .color(context.appColors.textBadgeText)
+                    .bold
+                    .make(),
               ),
             ),
           ],

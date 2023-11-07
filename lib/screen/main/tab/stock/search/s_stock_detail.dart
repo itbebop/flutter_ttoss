@@ -10,7 +10,13 @@ class StockDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: name.text.size(20).color(context.appColors.textBadgeText).bold.make(),
+        iconTheme: IconThemeData(color: context.appColors.textBadgeText),
+        backgroundColor: context.appColors.appBarBackground,
+        title: name.text
+            .size(20)
+            .color(context.appColors.textBadgeText)
+            .bold
+            .make(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

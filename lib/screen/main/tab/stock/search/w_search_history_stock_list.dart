@@ -12,42 +12,53 @@ class SearchHistoryStockList extends StatefulWidget {
   State<SearchHistoryStockList> createState() => _SearchHistoryStockListState();
 }
 
-class _SearchHistoryStockListState extends State<SearchHistoryStockList> with SearchStockDataProvider {
+class _SearchHistoryStockListState extends State<SearchHistoryStockList>
+    with SearchStockDataProvider {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 65,
-      child: Obx(
-        () => ListView.builder(
-          padding: const EdgeInsets.only(top: 5),
-          //가로길이 정해줘야함 -> SizeBox로 감싸고
-          scrollDirection: Axis.horizontal,
-          itemCount: searchData.searchHistoryList.length,
-          itemBuilder: ((context, index) {
-            final stockName = searchData.searchHistoryList[index];
-            return Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(right: 8),
-                  child: Row(
-                    children: [
-                      Tap(
-                          onTap: () {
-                            Nav.push(StockDetailScreen(name: stockName));
-                          },
-                          child: stockName.text.make()),
-                      Tap(
-                          onTap: () {
-                            searchData.removeHistory(stockName);
-                          },
-                          child: const Icon(Icons.close)),
-                    ],
-                  ).box.withRounded(value: 6).color(context.appColors.roundedLayoutBackground).p8.make(),
-                ),
-              ],
-            );
-          }),
+    return Container(
+      color: context.appColors.appBarBackground,
+      child: SizedBox(
+        width: double.infinity,
+        height: 65,
+        child: Obx(
+          () => ListView.builder(
+            padding: const EdgeInsets.only(top: 5),
+            //가로길이 정해줘야함 -> SizeBox로 감싸고
+            scrollDirection: Axis.horizontal,
+            itemCount: searchData.searchHistoryList.length,
+            itemBuilder: ((context, index) {
+              final stockName = searchData.searchHistoryList[index];
+              return Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 8),
+                    child: Row(
+                      children: [
+                        Tap(
+                            onTap: () {
+                              Nav.push(StockDetailScreen(name: stockName));
+                            },
+                            child: stockName.text
+                                .color(context.appColors.textBadgeText)
+                                .make()),
+                        Tap(
+                            onTap: () {
+                              searchData.removeHistory(stockName);
+                            },
+                            child: const Icon(Icons.close)),
+                      ],
+                    )
+                        .box
+                        .withRounded(value: 6)
+                        .color(context.appColors.roundedLayoutBackground)
+                        .p8
+                        .make(),
+                  ),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );

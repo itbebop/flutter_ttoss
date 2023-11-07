@@ -14,8 +14,10 @@ class StockFragment extends StatefulWidget {
   State<StockFragment> createState() => _StockFragmentState();
 }
 
-class _StockFragmentState extends State<StockFragment> with SingleTickerProviderStateMixin {
-  late final TabController tabController = TabController(length: 2, vsync: this);
+class _StockFragmentState extends State<StockFragment>
+    with SingleTickerProviderStateMixin {
+  late final TabController tabController =
+      TabController(length: 2, vsync: this);
 // 아래와 같이 해도 되지만 위가 더 깔끔
 // 아래와 같이 한 이유는 this가 _StockFragmentState() 빌드되는 과정이라 안먹음, 그래서 빌드되고 나서 intState에서 처리되도록 한 것
 /*
@@ -35,7 +37,8 @@ class _StockFragmentState extends State<StockFragment> with SingleTickerProvider
       // sliver 사용위해서 사용
       slivers: [
         SliverAppBar(
-          backgroundColor: context.appColors.roundedLayoutBackground,
+          iconTheme: IconThemeData(color: context.appColors.textBadgeText),
+          backgroundColor: context.appColors.appBarBackground,
           pinned: true, // appbar fixed(when scrolled)
           actions: [
             ImageButton(
@@ -66,7 +69,10 @@ class _StockFragmentState extends State<StockFragment> with SingleTickerProvider
           children: [
             title,
             tabBar,
-            if (currentIndex == 0) const MyStockFragment() else const TodayDiscoveryFragment(),
+            if (currentIndex == 0)
+              const MyStockFragment()
+            else
+              const TodayDiscoveryFragment(),
             height20,
           ],
         )),
@@ -75,20 +81,36 @@ class _StockFragmentState extends State<StockFragment> with SingleTickerProvider
   }
 
   Widget get title => Container(
-        color: context.appColors.roundedLayoutBackground,
+        color: context.appColors.appBarBackground,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            '토스증권'.text.size(24).color(context.appColors.iconButton).bold.make(),
+            '토스증권'
+                .text
+                .size(24)
+                .color(context.appColors.iconButton)
+                .bold
+                .make(),
             width20,
-            'S&P 500'.text.size(13).bold.color(context.appColors.lessImportant).make(),
+            'S&P 500'
+                .text
+                .size(13)
+                .bold
+                .color(context.appColors.lessImportant)
+                .make(),
             width10,
-            3919.29.toComma().text.size(13).bold.color(context.appColors.plus).make(),
+            3919.29
+                .toComma()
+                .text
+                .size(13)
+                .bold
+                .color(context.appColors.plus)
+                .make(),
           ],
         ).pOnly(left: 20),
       );
   Widget get tabBar => Container(
-        color: context.appColors.roundedLayoutBackground,
+        color: context.appColors.appBarBackground,
         child: Column(
           children: [
             TabBar(
@@ -97,14 +119,16 @@ class _StockFragmentState extends State<StockFragment> with SingleTickerProvider
                   currentIndex = index;
                 });
               },
-              labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              labelStyle:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               labelPadding: const EdgeInsets.symmetric(vertical: 20),
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: -20), // 왜 다른지?
+              indicatorPadding:
+                  const EdgeInsets.symmetric(horizontal: -20), // 왜 다른지?
               indicatorColor: Colors.white,
               controller: tabController, // nullable이지만 만들지 않아서 에러남
               tabs: [
-                '내 주식'.text.make(),
-                '오늘의 발견'.text.make(),
+                '내 주식'.text.color(context.appColors.textBadgeText).make(),
+                '오늘의 발견'.text.color(context.appColors.textBadgeText).make(),
               ],
             ),
             const Line(),

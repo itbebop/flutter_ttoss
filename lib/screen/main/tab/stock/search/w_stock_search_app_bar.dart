@@ -15,33 +15,37 @@ class StockSearchAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SizedBox(
-        // appbar의 사이즈를 고정하기 위해서
-        height: kToolbarHeight,
-        child: Row(
-          children: [
-            Tap(
-              onTap: () => Nav.pop(context),
-              child: const SizedBox(
-                width: 56,
-                height: kToolbarHeight,
-                child: Arrow(
-                  direction: AxisDirection.left,
+      child: Container(
+        color: context.appColors.appBarBackground,
+        child: SizedBox(
+          // appbar의 사이즈를 고정하기 위해서
+          height: kToolbarHeight,
+          child: Row(
+            children: [
+              Tap(
+                onTap: () => Nav.pop(context),
+                child: SizedBox(
+                  width: 56,
+                  height: kToolbarHeight,
+                  child: Arrow(
+                    color: context.appColors.lessImportant,
+                    direction: AxisDirection.left,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-                child: TextFieldWithDelete(
-              controller: controller,
-              textInputAction: TextInputAction.search, // 키보드 엔터가 검색버튼으로 바뀜
-              texthint: '\'커피\'를 검색해보세요',
-              onEditingComplete: () {
-                debugPrint('검색 확인버튼');
-                AppKeyboardUtil.hide(context); // 검색 버튼 누르면 키보드 닫히게
-              },
-            ).pOnly(top: 6)),
-            width20, // controller는 상위에서 선언
-          ],
+              Expanded(
+                  child: TextFieldWithDelete(
+                controller: controller,
+                textInputAction: TextInputAction.search, // 키보드 엔터가 검색버튼으로 바뀜
+                texthint: '\'커피\'를 검색해보세요',
+                onEditingComplete: () {
+                  debugPrint('검색 확인버튼');
+                  AppKeyboardUtil.hide(context); // 검색 버튼 누르면 키보드 닫히게
+                },
+              ).pOnly(top: 6)),
+              width20, // controller는 상위에서 선언
+            ],
+          ),
         ),
       ),
     );
